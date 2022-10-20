@@ -9,13 +9,15 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot, setBotArmy , botArmy, dischargeBot}) {
+function BotCard({ bot, setBotArmy , botArmy, dischargeBot, fromBotArmy = false}) {
 
   const onAddBot = () => {
     if (!botArmy.find(aBot => aBot.id === bot.id) && botArmy.length < 4){
       setBotArmy([...botArmy, bot])
     }
-    else setBotArmy(botArmy.filter(aBot => aBot.id !== bot.id))
+    else if (fromBotArmy) {
+      setBotArmy(botArmy.filter(aBot => aBot.id !== bot.id))
+    }
   }
 
   const handleDelete = () => {
@@ -23,7 +25,7 @@ function BotCard({ bot, setBotArmy , botArmy, dischargeBot}) {
   }
 
   const showX = () => {
-    if (!botArmy.find(aBot => aBot.id === bot.id)) {
+    if (!fromBotArmy) {
       return (
         <span>
               <div className="ui center aligned segment basic">
@@ -73,9 +75,7 @@ function BotCard({ bot, setBotArmy , botArmy, dischargeBot}) {
             <i className="icon shield" />
             {bot.armor}
           </span>
-          {
-            showX()
-          }
+          {showX()}
         </div>
       </div>
     </div>

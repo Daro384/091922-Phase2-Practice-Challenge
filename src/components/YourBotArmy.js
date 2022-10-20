@@ -3,7 +3,15 @@ import BotCard from "./BotCard"
 
 function YourBotArmy({setBotArmy, botArmy}) {
   const botElements = botArmy.map(bot => {
-    return <BotCard key={bot.id} bot={bot} setBotArmy={setBotArmy} botArmy={botArmy}/>
+    return (
+      <BotCard 
+        key={bot.id} 
+        bot={bot} 
+        setBotArmy={setBotArmy} 
+        botArmy={botArmy}
+        fromBotArmy={true}
+      />
+    )
   })
 
   return (
